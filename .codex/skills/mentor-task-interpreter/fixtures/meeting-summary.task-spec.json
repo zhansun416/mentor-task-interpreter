@@ -25,11 +25,12 @@
     {"statement": "不得新建编码体系；必须沿用已确认的六类编码。", "evidence_ids": ["e1"]}
   ],
   "deadlines": [
-    {"description": "向导师发送本周版本。", "value": "周五下午前", "status": "relative", "evidence_ids": ["e1"]}
+    {"description": "向导师发送本周版本。", "original_expression": "周五下午前", "status": "relative", "evidence_ids": ["e1"]}
   ],
   "dependencies": [
     {"description": "上次确认的六类编码表尚未随本次材料提供。", "status": "blocked", "evidence_ids": ["e1"]}
   ],
+  "execution_order": [],
   "clarifications": [
     {"question": "请提供上次确认的六类编码表或其文件路径。", "why_it_matters": "需要确认既有类别，才能避免创建新体系。", "related_evidence_ids": ["e1"]}
   ],

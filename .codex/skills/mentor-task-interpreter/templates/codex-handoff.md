@@ -14,6 +14,12 @@
 必须遵守：
 {{constraints_deadlines_dependencies}}
 
+已确认的执行顺序（按步骤执行；推测顺序不在此列）：
+{{execution_order_with_evidence}}
+
+截止日期优先显示已解析的绝对日期；如有，括号保留导师原始表达：
+{{deadlines_with_original_expression}}
+
 开始前或执行中无法安全判断的事项：
 {{clarifications}}
 

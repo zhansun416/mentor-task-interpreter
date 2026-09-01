@@ -1,0 +1,53 @@
+{
+  "task_title": "提交数据质量核对、Table 2 v6 与 Methods 修订说明",
+  "task_goal": "在 2026-04-10 前完成导师指定的数据质量核对，基于既有 Table 2 更新 v6，并提交聚焦变更影响的 Methods 修订说明。",
+  "deliverables": [
+    {"id": "quality-log", "description": "缺失值与样本排除的数据质量核对日志。", "acceptance_criteria": ["覆盖缺失值和样本排除", "内容简短但可追溯"], "evidence_ids": ["e1", "e2"]},
+    {"id": "table2-v6", "description": "在 table2-v5.xlsx 基础上更新的 Table 2 v6。", "acceptance_criteria": ["使用既有表格版本而非新建版本", "在数据质量核对后更新"], "evidence_ids": ["e1", "e2"]},
+    {"id": "methods-note", "description": "约 800 字的 Methods 修订说明。", "acceptance_criteria": ["说明变更及其影响", "不是完整的 Methods 重写", "若新版批注手册未及时到达，说明该编码调整待确认"], "evidence_ids": ["e3", "e4"]}
+  ],
+  "input_sources": [
+    {"id": "meeting-0407", "type": "meeting_note", "description": "2026-04-07 导师会议节选；发言人和附件在记录中明确。", "path_or_reference": "fixtures/golden-case-mentor-records.md#2026-04-07", "timestamp_or_order": "2026-04-07", "status": "available", "attachments": [{"id": "analysis-plan-v3", "name": "analysis-plan-v3.docx", "path_or_reference": "附件：analysis-plan-v3.docx", "status": "available"}, {"id": "table2-v5", "name": "table2-v5.xlsx", "path_or_reference": "附件：table2-v5.xlsx", "status": "available"}, {"id": "coding-manual-comments", "name": "coding-manual-commented.pdf", "path_or_reference": "附件：coding-manual-commented.pdf", "status": "available"}]},
+    {"id": "group-0408", "type": "chat", "description": "2026-04-08 项目群聊节选；包含导师、助研、学生与身份未标注成员。", "path_or_reference": "fixtures/golden-case-mentor-records.md#2026-04-08", "timestamp_or_order": "2026-04-08", "status": "available", "attachments": []}
+  ],
+  "explicit_requirements": [
+    {"id": "r1", "statement": "先按 analysis-plan-v3 的数据质量检查框架核对缺失值和样本排除。", "status": "active", "evidence_ids": ["e1"]},
+    {"id": "r2", "statement": "完成数据质量核对后，再基于 table2-v5.xlsx 更新 Table 2 v6，不另起版本。", "status": "active", "evidence_ids": ["e1", "e2"]},
+    {"id": "r3", "statement": "完整重写 1,200 字 Methods。", "status": "superseded", "evidence_ids": ["e3"], "rationale": "同一位导师随后明确将本周交付改为约 800 字修订说明。"},
+    {"id": "r4", "statement": "本周仅交约 800 字的 Methods 修订说明，说明变更和影响。", "status": "active", "evidence_ids": ["e3"]},
+    {"id": "r5", "statement": "若新版带批注的编码手册在 2026-04-09 17:00 前到达，则按它补入编码调整；否则在 Methods 说明中注明待确认，且不得延后周五提交。", "status": "conditional", "evidence_ids": ["e4"]},
+    {"id": "r6", "statement": "周五 18:00 前向导师发送数据质量日志、Table 2 v6 与 Methods 修订说明。", "status": "active", "evidence_ids": ["e5"]}
+  ],
+  "inferences": [
+    {"statement": "可在更新 Table 2 v6 后撰写 Methods 修订说明，以复用核对结果。", "basis_evidence_ids": ["e1", "e3"], "impact": "这是可选的工作安排，并非导师确认的执行顺序。", "confidence": 0.45}
+  ],
+  "evidence": [
+    {"id": "e1", "source_id": "meeting-0407", "locator": "10:02，张老师", "content": "先按 analysis-plan-v3 的数据质量检查框架核对缺失值和样本排除；做完以后再更新 table2-v5；不另起版本。", "kind": "explicit", "supports": ["r1", "r2", "quality-log", "table2-v6", "execution-step-1", "execution-step-2"]},
+    {"id": "e2", "source_id": "meeting-0407", "locator": "10:06，张老师", "content": "本周不扩展可视化；先完成核对，再把 Table 2 更新为 v6；核对结果留成简短日志。", "kind": "explicit", "supports": ["r2", "quality-log", "table2-v6"]},
+    {"id": "e3", "source_id": "meeting-0407", "locator": "10:10，张老师", "content": "上一版的 1,200 字完整 Methods 重写改为本周仅交约 800 字的修订说明，说明变更和影响。", "kind": "explicit", "supports": ["r3", "r4", "methods-note"]},
+    {"id": "e4", "source_id": "group-0408", "locator": "09:18，张老师", "content": "若新版带批注的编码手册明天 17:00 前到，则补入编码调整；否则说明待确认，不要等到周五以后。", "kind": "explicit", "supports": ["r5", "methods-note"]},
+    {"id": "e5", "source_id": "meeting-0407", "locator": "10:13，张老师", "content": "coding-manual-commented.pdf 是本轮编码调整唯一正式依据；周五 18:00 前发送三项交付物。", "kind": "explicit", "supports": ["r6", "methods-note"]},
+    {"id": "e6", "source_id": "group-0408", "locator": "09:23，林同学", "content": "学生复述会先做核对再更新 Table 2。", "kind": "context", "supports": ["timeline-context"]},
+    {"id": "e7", "source_id": "group-0408", "locator": "09:30，身份未标注的群成员", "content": "建议本周把三张图做成交互式版本。", "kind": "context", "supports": ["clarification-identity-and-scope"]}
+  ],
+  "constraints": [
+    {"statement": "本周不扩展可视化。", "evidence_ids": ["e2"]},
+    {"statement": "编码调整只能以 coding-manual-commented.pdf 为正式依据。", "evidence_ids": ["e5"]}
+  ],
+  "deadlines": [
+    {"description": "若要补入新版带批注手册的编码调整，手册到达的条件截止时间。", "original_expression": "明天 17:00 前", "absolute_date": "2026-04-09", "status": "confirmed", "evidence_ids": ["e4"]},
+    {"description": "向导师发送三项交付物。", "original_expression": "周五 18:00 前", "absolute_date": "2026-04-10", "status": "confirmed", "evidence_ids": ["e5"]}
+  ],
+  "dependencies": [
+    {"description": "Table 2 v6 依赖已完成的数据质量核对。", "status": "available", "evidence_ids": ["e1", "e2"]},
+    {"description": "新版带批注编码手册是否在条件截止前到达决定是否补入编码调整，但不阻塞周五提交。", "status": "uncertain", "evidence_ids": ["e4"]}
+  ],
+  "execution_order": [
+    {"step": 1, "task": "完成缺失值和样本排除的数据质量核对，并保留简短日志。", "evidence_ids": ["e1", "e2"]},
+    {"step": 2, "task": "基于 table2-v5.xlsx 更新 Table 2 v6。", "evidence_ids": ["e1", "e2"]}
+  ],
+  "clarifications": [
+    {"question": "09:30 建议制作交互式图的身份未标注成员是否为导师，且该建议是否改变本周范围？", "why_it_matters": "若该消息来自导师，会与“本周不扩展可视化”的已知指令产生范围冲突；目前不能把它作为导师要求。", "related_evidence_ids": ["e2", "e7"]}
+  ],
+  "confidence": 0.9
+}

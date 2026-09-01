@@ -4,7 +4,7 @@
   "title": "Mentor task specification v0.1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["task_title", "task_goal", "deliverables", "input_sources", "explicit_requirements", "inferences", "evidence", "constraints", "deadlines", "dependencies", "clarifications", "confidence"],
+  "required": ["task_title", "task_goal", "deliverables", "input_sources", "explicit_requirements", "inferences", "evidence", "constraints", "deadlines", "dependencies", "execution_order", "clarifications", "confidence"],
   "properties": {
     "task_title": {"type": "string", "minLength": 1},
     "task_goal": {"type": "string", "minLength": 1},
@@ -16,6 +16,7 @@
     "constraints": {"type": "array", "items": {"$ref": "#/definitions/constrained_statement"}},
     "deadlines": {"type": "array", "items": {"$ref": "#/definitions/deadline"}},
     "dependencies": {"type": "array", "items": {"$ref": "#/definitions/dependency"}},
+    "execution_order": {"type": "array", "items": {"$ref": "#/definitions/execution_step"}},
     "clarifications": {"type": "array", "items": {"$ref": "#/definitions/clarification"}},
     "confidence": {"type": "number", "minimum": 0, "maximum": 1}
   },
@@ -80,12 +81,16 @@
       "properties": {"statement": {"type": "string", "minLength": 1}, "evidence_ids": {"type": "array", "items": {"$ref": "#/definitions/id"}}}
     },
     "deadline": {
-      "type": "object", "additionalProperties": false, "required": ["description", "status", "evidence_ids"],
-      "properties": {"description": {"type": "string", "minLength": 1}, "value": {"type": "string"}, "status": {"type": "string", "enum": ["confirmed", "relative", "uncertain"]}, "evidence_ids": {"type": "array", "items": {"$ref": "#/definitions/id"}}}
+      "type": "object", "additionalProperties": false, "required": ["description", "original_expression", "status", "evidence_ids"],
+      "properties": {"description": {"type": "string", "minLength": 1}, "original_expression": {"type": "string", "minLength": 1}, "absolute_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}, "status": {"type": "string", "enum": ["confirmed", "relative", "uncertain"]}, "evidence_ids": {"type": "array", "items": {"$ref": "#/definitions/id"}}}
     },
     "dependency": {
       "type": "object", "additionalProperties": false, "required": ["description", "status"],
       "properties": {"description": {"type": "string", "minLength": 1}, "status": {"type": "string", "enum": ["available", "blocked", "uncertain"]}, "evidence_ids": {"type": "array", "items": {"$ref": "#/definitions/id"}}}
+    },
+    "execution_step": {
+      "type": "object", "additionalProperties": false, "required": ["step", "task", "evidence_ids"],
+      "properties": {"step": {"type": "integer", "minimum": 1}, "task": {"type": "string", "minLength": 1}, "evidence_ids": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/id"}}}
     },
     "clarification": {
       "type": "object", "additionalProperties": false, "required": ["question", "why_it_matters"],

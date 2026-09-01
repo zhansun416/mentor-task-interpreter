@@ -58,7 +58,7 @@ def validate(value, schema, root, path="$", errors=None):
 
 def referenced_ids(spec):
     references = []
-    for section in ("deliverables", "explicit_requirements", "constraints", "deadlines", "dependencies", "clarifications"):
+    for section in ("deliverables", "explicit_requirements", "constraints", "deadlines", "dependencies", "execution_order", "clarifications"):
         for item in spec.get(section, []):
             references.extend(item.get("evidence_ids", item.get("related_evidence_ids", [])))
     for item in spec.get("inferences", []): references.extend(item.get("basis_evidence_ids", []))

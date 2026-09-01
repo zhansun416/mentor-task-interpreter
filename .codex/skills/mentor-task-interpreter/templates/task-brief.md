@@ -20,6 +20,10 @@
 
 {{constraints_deadlines_dependencies}}
 
+## 已确认的执行顺序
+
+{{execution_order_with_evidence}}
+
 ## 推断与置信度
 
 {{inferences_and_confidence}}

@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).parents[1]
 VALIDATOR = ROOT / "scripts" / "validate_task_spec.py"
 FIXTURE = ROOT / "fixtures" / "meeting-summary.task-spec.json"
+GOLDEN_FIXTURE = ROOT / "fixtures" / "golden-case.task-spec.json"
 
 
 def run(command):
@@ -21,6 +22,7 @@ def run(command):
 
 def main():
     run([sys.executable, str(VALIDATOR), str(FIXTURE)])
+    run([sys.executable, str(VALIDATOR), str(GOLDEN_FIXTURE)])
     invalid = json.loads(FIXTURE.read_text(encoding="utf-8"))
     invalid.pop("task_goal")
     probe = ROOT / "fixtures" / ".invalid-task-spec.json"
@@ -35,7 +37,18 @@ def main():
             return 1
     finally:
         probe.unlink(missing_ok=True)
-    print("PASS: valid fixture accepted; missing required field rejected")
+    invalid_order = json.loads(GOLDEN_FIXTURE.read_text(encoding="utf-8"))
+    invalid_order["execution_order"][0]["evidence_ids"] = ["unknown-evidence"]
+    probe = ROOT / "fixtures" / ".invalid-execution-order.task-spec.json"
+    try:
+        probe.write_text(json.dumps(invalid_order, ensure_ascii=False), encoding="utf-8")
+        failed = subprocess.run([sys.executable, str(VALIDATOR), str(probe)], cwd=ROOT, capture_output=True, text=True)
+        if failed.returncode == 0 or "unknown evidence ID 'unknown-evidence'" not in failed.stderr:
+            print(f"Execution-order evidence was not rejected: {failed.stderr}", file=sys.stderr)
+            return 1
+    finally:
+        probe.unlink(missing_ok=True)
+    print("PASS: smoke and golden fixtures accepted; invalid required field and execution-order evidence rejected")
     return 0
 
 
