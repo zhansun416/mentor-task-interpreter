@@ -1,0 +1,37 @@
+{
+  "task_title": "提交访谈编码表与说明",
+  "task_goal": "在本周内整理现有访谈的编码表，并向导师提交 Excel 与一页样本范围说明。",
+  "deliverables": [
+    {"id": "coding-sheet", "description": "现有访谈的编码表 Excel 文件。", "acceptance_criteria": ["使用已确认的六类编码", "不引入新的编码体系"], "evidence_ids": ["e1"]},
+    {"id": "scope-note", "description": "一页样本范围说明。", "acceptance_criteria": ["说明两份未转写访谈未纳入本周版本"], "evidence_ids": ["e1", "e2"]}
+  ],
+  "input_sources": [
+    {"id": "meeting-0903", "type": "meeting_note", "description": "9 月 3 日导师会议纪要节选。", "path_or_reference": "fixtures/meeting-summary.md", "timestamp_or_order": "9 月 3 日", "status": "available", "attachments": []},
+    {"id": "prior-codebook", "type": "document", "description": "上次确认的六类编码表。", "status": "missing", "attachments": []}
+  ],
+  "explicit_requirements": [
+    {"id": "r1", "statement": "本周先整理编码表，并交付 Excel 和一页说明。", "status": "active", "evidence_ids": ["e1"]},
+    {"id": "r2", "statement": "沿用上次确认的六类编码，不另起编码体系。", "status": "active", "evidence_ids": ["e1"]},
+    {"id": "r3", "statement": "两份未转写访谈不阻塞本周提交，但须在说明中明确样本范围。", "status": "active", "evidence_ids": ["e2"]}
+  ],
+  "inferences": [
+    {"statement": "本周版本仅覆盖当前已转写的访谈。", "basis_evidence_ids": ["e2"], "impact": "编码表和说明不应把未转写的两份计入样本。", "confidence": 0.9}
+  ],
+  "evidence": [
+    {"id": "e1", "source_id": "meeting-0903", "locator": "第 1 段，导师发言", "content": "本周先把访谈编码表整理出来，发 Excel 和一页说明；沿用上次确认的六类；周五下午前发。", "kind": "explicit", "supports": ["r1", "r2", "coding-sheet", "scope-note"]},
+    {"id": "e2", "source_id": "meeting-0903", "locator": "第 3 段，导师发言", "content": "两份未转写访谈不等；说明中写清样本范围；不影响本周提交。", "kind": "explicit", "supports": ["r3", "scope-note"]}
+  ],
+  "constraints": [
+    {"statement": "不得新建编码体系；必须沿用已确认的六类编码。", "evidence_ids": ["e1"]}
+  ],
+  "deadlines": [
+    {"description": "向导师发送本周版本。", "value": "周五下午前", "status": "relative", "evidence_ids": ["e1"]}
+  ],
+  "dependencies": [
+    {"description": "上次确认的六类编码表尚未随本次材料提供。", "status": "blocked", "evidence_ids": ["e1"]}
+  ],
+  "clarifications": [
+    {"question": "请提供上次确认的六类编码表或其文件路径。", "why_it_matters": "需要确认既有类别，才能避免创建新体系。", "related_evidence_ids": ["e1"]}
+  ],
+  "confidence": 0.88
+}

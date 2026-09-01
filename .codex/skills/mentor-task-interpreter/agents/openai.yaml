@@ -1,0 +1,6 @@
+interface:
+  display_name: "导师任务解读器"
+  short_description: "将导师记录重构为可执行任务说明"
+  default_prompt: "使用 $mentor-task-interpreter 将这些导师聊天记录和附件整理为可执行任务说明。"
+policy:
+  allow_implicit_invocation: true
