@@ -32,7 +32,7 @@
   ],
   "constraints": [
     {"statement": "本周不扩展可视化。", "evidence_ids": ["e2"]},
-    {"statement": "编码调整只能以 coding-manual-commented.pdf 为正式依据。", "evidence_ids": ["e5"]}
+    {"statement": "在新版带批注的编码手册未于 2026-04-09 17:00 前到达的情况下，以 coding-manual-commented.pdf 为本轮编码调整正式依据；若新版按时到达，则以后续导师指令为准。", "evidence_ids": ["e4", "e5"]}
   ],
   "deadlines": [
     {"description": "若要补入新版带批注手册的编码调整，手册到达的条件截止时间。", "original_expression": "明天 17:00 前", "absolute_date": "2026-04-09", "status": "confirmed", "evidence_ids": ["e4"]},

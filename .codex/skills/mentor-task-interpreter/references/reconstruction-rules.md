@@ -19,6 +19,8 @@
 
 将每条要求标为 `active`、`superseded`、`conditional` 或 `uncertain`。后续明确的同一权威指令通常覆盖同一范围的早期指令；范围不同的要求可同时有效。冲突无法消解时，保留两种表述并提出最小化澄清问题。
 
+指令优先级不仅适用于 `explicit_requirements`，也适用于 `constraints`、`deadlines`、`dependencies`、`execution_order` 等所有输出字段。任何字段都不能保留已被后续导师指令覆盖、限定或条件化的绝对表述；应同步更新为当前有效的条件、范围和时间边界。
+
 ## 顺序与相对时间
 
 只有导师或其指定材料明确要求的“先/再/完成后”顺序，或材料中可直接确认的前置关系，才写入 `execution_order`，每步均须引用证据。为方便而推测的顺序写入 `inferences`，不能伪装为确定步骤。

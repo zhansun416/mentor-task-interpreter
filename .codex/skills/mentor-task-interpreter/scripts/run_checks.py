@@ -23,6 +23,25 @@ def run(command):
 def main():
     run([sys.executable, str(VALIDATOR), str(FIXTURE)])
     run([sys.executable, str(VALIDATOR), str(GOLDEN_FIXTURE)])
+    golden = json.loads(GOLDEN_FIXTURE.read_text(encoding="utf-8"))
+    conditional_manual_requirement = next(
+        (item for item in golden["explicit_requirements"]
+         if item["status"] == "conditional" and "编码手册" in item["statement"]),
+        None,
+    )
+    manual_constraints = [
+        item for item in golden["constraints"]
+        if "coding-manual-commented.pdf" in item["statement"]
+    ]
+    if (
+        conditional_manual_requirement is None
+        or len(manual_constraints) != 1
+        or "未于 2026-04-09 17:00 前到达" not in manual_constraints[0]["statement"]
+        or "若新版按时到达" not in manual_constraints[0]["statement"]
+        or set(manual_constraints[0]["evidence_ids"]) != {"e4", "e5"}
+    ):
+        print("Golden constraint does not preserve the later conditional manual instruction", file=sys.stderr)
+        return 1
     invalid = json.loads(FIXTURE.read_text(encoding="utf-8"))
     invalid.pop("task_goal")
     probe = ROOT / "fixtures" / ".invalid-task-spec.json"
@@ -48,7 +67,7 @@ def main():
             return 1
     finally:
         probe.unlink(missing_ok=True)
-    print("PASS: smoke and golden fixtures accepted; invalid required field and execution-order evidence rejected")
+    print("PASS: smoke and golden fixtures accepted; conditional manual constraint aligned; invalid required field and execution-order evidence rejected")
     return 0
 
 
